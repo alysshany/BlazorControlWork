@@ -3,6 +3,7 @@
 @using Data;
 <PageTitle>Index</PageTitle>
 @inject NavigationManager Navigation
+@inject IJSRuntime JS
 <h1>Hello, User!</h1>
 
 <div class="card">
@@ -30,11 +31,18 @@
 
     private void Logining()
     {
-        user = DBConnection.FindByLogin(userMod.Login);
-        if (user.Password == userMod.Password)
+        if (userMod.Login != null && userMod.Password != null)
         {
-           UsersComp.currentUser = user;
-           Navigation.NavigateTo("/counter");
+            user = DBConnection.FindByLogin(userMod.Login);
+            if (user.Password == userMod.Password)
+            {
+                UsersComp.currentUser = user;
+                Navigation.NavigateTo("/counter");
+            }
+            else
+            {
+                JS.InvokeVoidAsync("alert", "No user!");
+            }
         }
     }
 }

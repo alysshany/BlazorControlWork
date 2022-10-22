@@ -42,11 +42,14 @@
 
     private void Registrarion()
     {
-        if (userMod.Password == userMod.RepPassword)
+        if (userMod.Login != null && userMod.Password != null && userMod.Name != null && userMod.Surname != null && userMod.Email != null)
         {
-            DBConnection.AddToDataBase(userMod);
-            UsersComp.currentUser = userMod;
-            Navigation.NavigateTo("/counter");
+            if (userMod.Password == userMod.RepPassword)
+            {
+                DBConnection.AddToDataBase(userMod);
+                UsersComp.currentUser = userMod;
+                Navigation.NavigateTo("/counter");
+            }
         }
     }
     private void Login()
