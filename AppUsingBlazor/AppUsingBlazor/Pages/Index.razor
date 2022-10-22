@@ -1,0 +1,60 @@
+﻿@page "/"
+@using AppUsingBlazor.Data;
+<PageTitle>Index</PageTitle>
+@inject NavigationManager Navigation
+<h1>Hello, User!</h1>
+
+Registration Page
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<div class="card">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+        <EditForm Model="@userMod">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+        <hr>
+            <label for="email"><b>Name</b></label>
+            <InputText placeholder="Enter Name" name="name" id="name" required @bind-Value="userMod.Name" />
+
+            <label for="email"><b>Surname</b></label>
+            <InputText  type="text" placeholder="Enter Surname" name="surname" id="surname" @bind-Value="userMod.Surname" />
+
+            <label for="email"><b>Email</b></label>
+            <InputText type="text" placeholder="Enter Email" name="email" id="email" required @bind-Value="userMod.Email" />
+
+            <label for="email"><b>Login</b></label>
+            <InputText type="text" placeholder="Enter Login" name="login" id="login" required @bind-Value="userMod.Login" />
+
+            <label for="psw"><b>Password</b></label>
+            <InputText type="password" placeholder="Enter Password" name="psw" id="psw" required @bind-Value="userMod.Password" />
+
+            <label for="psw-repeat"><b>Repeat Password</b></label>
+            <InputText type="password" placeholder="Enter Password" name="psw" id="psw" required @bind-Value="userMod.RepPassword" />
+        <hr>
+
+        <button type="submit" class="registerbtn" @onclick="Registrarion">Registration</button>
+        <button type="submit" class="registerbtn" @onclick="Login">To Login</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private User userMod = new User();
+
+    private void Registrarion()
+    {
+        if (userMod.Password == userMod.RepPassword)
+        {
+            DBConnection.AddToDataBase(userMod);
+            UsersComp.currentUser = userMod;
+            Navigation.NavigateTo("/counter");
+        }
+    }
+    private void Login()
+    {
+        Navigation.NavigateTo("/login");
+    }
+}

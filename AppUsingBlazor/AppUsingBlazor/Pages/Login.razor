@@ -1,0 +1,45 @@
+﻿@page "/login"
+@using AppUsingBlazor.Data;
+@using Data;
+<PageTitle>Index</PageTitle>
+@inject NavigationManager Navigation
+<h1>Hello, User!</h1>
+
+Login Page
+
+<div class="card">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+    <EditForm Model="@userMod">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+        <hr>
+            <label for="email"><b>Login</b></label>
+            <InputText type="text" placeholder="Enter Login" name="login" id="login" required @bind-Value="userMod.Login" />
+
+            <label for="psw"><b>Password</b></label>
+            <InputText type="password" placeholder="Enter Password" name="psw" id="psw" required @bind-Value="userMod.Password" />
+
+        <hr>
+
+        <NavLink href="/counter" class="btn btn-link">Register</NavLink>
+        <button type="submit" class="registerbtn" @onclick="Logining">LOG IN</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private User userMod = new User();
+    private User user = new User();
+
+    private void Logining()
+    {
+        user = DBConnection.FindByLogin(userMod.Login);
+        if (user.Password == userMod.Password)
+        {
+           UsersComp.currentUser = user;
+           Navigation.NavigateTo("/counter");
+        }
+    }
+}
