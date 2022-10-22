@@ -34,14 +34,17 @@
         if (userMod.Login != null && userMod.Password != null)
         {
             user = DBConnection.FindByLogin(userMod.Login);
-            if (user.Password == userMod.Password)
+            if (user != null)
             {
-                UsersComp.currentUser = user;
-                Navigation.NavigateTo("/counter");
-            }
-            else
-            {
-                JS.InvokeVoidAsync("alert", "No user found");
+                if (user.Password == userMod.Password)
+                {
+                    UsersComp.currentUser = user;
+                    Navigation.NavigateTo("/counter");
+                }
+                else
+                {
+                    JS.InvokeVoidAsync("alert", "No user found");
+                }
             }
         }
     }
