@@ -1,6 +1,14 @@
 ﻿@page "/main"
 @using Data
+@inject NavigationManager Navigation
 <PageTitle>Counter</PageTitle>
 
 <h1>User Data</h1>
 <SecondComp User = "@UsersComp.currentUser"></SecondComp>
+<button @onclick="Logouting">LOG OUT</button>
+@code {
+	private void Logouting()
+    {
+        Navigation.NavigateTo("/");
+    }
+}

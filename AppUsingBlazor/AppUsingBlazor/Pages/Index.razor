@@ -4,12 +4,8 @@
 @inject NavigationManager Navigation
 <h1>Hello, User!</h1>
 
-Registration Page
-
-<SurveyPrompt Title="How is Blazor working for you?" />
-
 <div class="card">
-    <h4 class="card-header">Login</h4>
+    <h4 class="card-header">Registration Page</h4>
     <div class="card-body">
         <EditForm Model="@userMod">
     <DataAnnotationsValidator />
@@ -18,19 +14,19 @@ Registration Page
         <hr>
             <label for="email"><b>Name</b></label>
             <InputText placeholder="Enter Name" name="name" id="name" required @bind-Value="userMod.Name" />
-
+            <br/>
             <label for="email"><b>Surname</b></label>
             <InputText  type="text" placeholder="Enter Surname" name="surname" id="surname" @bind-Value="userMod.Surname" />
-
+            <br/>
             <label for="email"><b>Email</b></label>
             <InputText type="text" placeholder="Enter Email" name="email" id="email" required @bind-Value="userMod.Email" />
-
+            <br/>
             <label for="email"><b>Login</b></label>
             <InputText type="text" placeholder="Enter Login" name="login" id="login" required @bind-Value="userMod.Login" />
-
+            <br/>
             <label for="psw"><b>Password</b></label>
             <InputText type="password" placeholder="Enter Password" name="psw" id="psw" required @bind-Value="userMod.Password" />
-
+            <br/>
             <label for="psw-repeat"><b>Repeat Password</b></label>
             <InputText type="password" placeholder="Enter Password" name="psw" id="psw" required @bind-Value="userMod.RepPassword" />
         <hr>

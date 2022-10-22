@@ -21,7 +21,6 @@
             </NavLink>
         </div>
     </nav>
-    <button @onclick="Logouting">LOG OUT</button>
 </div>
 
 @code {
@@ -32,10 +31,5 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
-    }
-
-    private void Logouting()
-    {
-        Navigation.NavigateTo("/");
     }
 }
