@@ -2,11 +2,14 @@
 @inject NavigationManager Navigation
 <h3>UserComponent</h3>
 
-<div class="card">
+@if (UsersComp.currentUser != null)
+{
+    <div class="card">
         <p>Name:  @user.Name</p>
         <p>Surname:  @user.Surname</p>
         <p>Email: @user.Email</p>
-</div>
+    </div>
+}
 
 @code {
 	[Parameter]

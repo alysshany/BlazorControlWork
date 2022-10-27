@@ -20,6 +20,5 @@ namespace AppUsingBlazor.Data
             var user = collection.Find(x => x.Login == login).FirstOrDefault();
             return user;
         }
-
     }
 }

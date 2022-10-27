@@ -3,6 +3,7 @@
 @using Data;
 <PageTitle>Index</PageTitle>
 @inject NavigationManager Navigation
+@inject ILocalStorageService storageService
 @inject IJSRuntime JS
 <h1>Hello, User!</h1>
 
@@ -29,7 +30,7 @@
     private User userMod = new User();
     private User user = new User();
 
-    private void Logining()
+    private async void Logining()
     {
         if (userMod.Login != null && userMod.Password != null)
         {
@@ -40,6 +41,7 @@
                 {
                     UsersComp.currentUser = user;
                     Navigation.NavigateTo("/counter");
+                    await storageService.SetAsync<User>("Autho", UsersComp.currentUser);
                 }
                 else
                 {
@@ -47,5 +49,6 @@
                 }
             }
         }
+        StateHasChanged();
     }
 }

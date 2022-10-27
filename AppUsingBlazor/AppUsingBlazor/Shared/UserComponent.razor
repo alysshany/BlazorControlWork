@@ -1,8 +1,8 @@
 ﻿@using Data
 @inject NavigationManager Navigation
-<div style='float: right;' @onclick = "Clicking"> Name: @user.Name</div>
+<div style='float: right;' @onclick = "Clicking"> Name: @user?.Name</div>
 <br />
-<div style='float: right;'@onclick = "Clicking">Surname: @user.Surname</div>
+<div style='float: right;'@onclick = "Clicking">Surname: @user?.Surname</div>
 
 @code {
 	[Parameter]
