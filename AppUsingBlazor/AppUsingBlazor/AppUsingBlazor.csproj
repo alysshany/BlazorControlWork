@@ -7,12 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Bson" Version="2.18.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.18.0" />
+    <None Include="wwwroot\Images\kitten.jpg" />
+    <None Include="wwwroot\Images\puppy.jpg" />
+    <None Include="wwwroot\Images\rabbit.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <PackageReference Include="MongoDB.Bson" Version="2.18.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.18.0" />
+    <PackageReference Include="MongoDB.Driver.GridFS" Version="2.18.0" />
   </ItemGroup>
 
 </Project>

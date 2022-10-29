@@ -1,18 +1,57 @@
 ﻿@page "/counter"
 @using Data
+@using MongoDB.Driver.GridFS
 @inject NavigationManager Navigation
 @inject ILocalStorageService storageService
-<PageTitle>Counter</PageTitle>
+@inject FileSystemService filess
 
-<h1>User</h1>
+<PageTitle>Photos</PageTitle>
+
+<h1>Photos</h1>
 <UserComponent User = "@UsersComp.currentUser"></UserComponent>
 
+<table class="table">
+        <thead>
+            <tr>
+                <th>Photo name</th>
+                <th>Show photo</th>
+                <th>Show button</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var img in images)
+            {
+                <tr>
+                    <td>@img </td>
+                    <td><img src = "Images/@currentImg" width = "60" height = "50" alt = ""/> </td>
+                    <td><button @onclick = "() => ClickingImage(img)">View</button></td>
+                </tr>
+            }
+        </tbody>
+
+</table>
+
 <button @onclick="Logouting">LOG OUT</button>
+
 @code {
+    List<string> images;
+    string? currentImg;
+
+    protected override void OnInitialized()
+    {
+        images = filess.UploadImg();
+    }
+
+    private void ClickingImage(string image)
+    {
+        currentImg = image;
+    }
+
 	private void Logouting()
     {
         UsersComp.currentUser = null;
         Navigation.NavigateTo("/");
         storageService.RemoveAsync("Autho");
+        StateHasChanged();
     }
 }

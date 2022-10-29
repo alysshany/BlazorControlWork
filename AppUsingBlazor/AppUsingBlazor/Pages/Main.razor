@@ -7,11 +7,18 @@
 <h1>User Data</h1>
 <SecondComp User = "@UsersComp.currentUser"></SecondComp>
 <button @onclick="Logouting">LOG OUT</button>
+<button @onclick="ToMain">TO MAIN</button>
 @code {
     private void Logouting()
     {
         UsersComp.currentUser = null;
         storageService.RemoveAsync("Autho");
         Navigation.NavigateTo("/");
+        StateHasChanged();
+    }
+
+    private void ToMain()
+    {
+        Navigation.NavigateTo("/counter");
     }
 }
