@@ -1,8 +1,9 @@
 ﻿@using Data
 @inject NavigationManager Navigation
+@inject UsersComp usc
 <h3>UserComponent</h3>
 
-@if (UsersComp.currentUser != null)
+@if (usc.currentUser != null)
 {
     <div class="card">
         <p>Name:  @user.Name</p>

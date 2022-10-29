@@ -2,6 +2,7 @@
 @using Data
 @inject NavigationManager Navigation
 @inject ILocalStorageService storageService
+@inject UsersComp usc
 <PageTitle>AppUsingBlazor</PageTitle>
 
 <div class="page">
@@ -11,7 +12,7 @@
 
     <main>
         <div class="top-row px-4">
-            <b @onclick = "ClickingIn">@UsersComp.currentUser?.Name</b>
+            <b @onclick = "ClickingIn">@usc.currentUser?.Name</b>
         </div>
 
         <article class="content px-4">
@@ -28,11 +29,14 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        User newUser = await storageService.GetAsync<User>("Autho");
-        if(newUser is not null)
+        if (firstRender)
         {
-            UsersComp.currentUser = newUser;
-            StateHasChanged();
+            User newUser = await storageService.GetAsync<User>("Autho");
+            if(newUser is not null)
+            {
+                usc.currentUser = newUser;
+                StateHasChanged();
+            }
         }
     }
 }

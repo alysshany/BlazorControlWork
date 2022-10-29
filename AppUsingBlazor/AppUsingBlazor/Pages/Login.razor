@@ -4,6 +4,7 @@
 <PageTitle>Index</PageTitle>
 @inject NavigationManager Navigation
 @inject ILocalStorageService storageService
+@inject UsersComp usc
 @inject IJSRuntime JS
 <h1>Hello, User!</h1>
 
@@ -39,9 +40,9 @@
             {
                 if (user.Password == userMod.Password)
                 {
-                    UsersComp.currentUser = user;
+                    usc.currentUser = user;
                     Navigation.NavigateTo("/counter");
-                    await storageService.SetAsync<User>("Autho", UsersComp.currentUser);
+                    await storageService.SetAsync<User>("Autho", usc.currentUser);
                 }
                 else
                 {

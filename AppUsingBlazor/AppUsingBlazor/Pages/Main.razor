@@ -2,16 +2,19 @@
 @using Data
 @inject NavigationManager Navigation
 @inject ILocalStorageService storageService
+@inject UsersComp usc
 <PageTitle>Main</PageTitle>
 
 <h1>User Data</h1>
-<SecondComp User = "@UsersComp.currentUser"></SecondComp>
+<SecondComp User = "@usc.currentUser"></SecondComp>
+
 <button @onclick="Logouting">LOG OUT</button>
 <button @onclick="ToMain">TO MAIN</button>
+
 @code {
     private void Logouting()
     {
-        UsersComp.currentUser = null;
+        usc.currentUser = null;
         storageService.RemoveAsync("Autho");
         Navigation.NavigateTo("/");
         StateHasChanged();

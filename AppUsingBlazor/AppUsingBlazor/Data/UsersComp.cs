@@ -2,6 +2,6 @@
 {
     public class UsersComp
     {
-        public static User? currentUser { get; set; }
+        public User? currentUser { get; set; }
     }
 }

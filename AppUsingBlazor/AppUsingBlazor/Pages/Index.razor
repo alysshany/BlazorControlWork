@@ -3,6 +3,7 @@
 <PageTitle>Index</PageTitle>
 @inject NavigationManager Navigation
 @inject ILocalStorageService storageService
+@inject UsersComp usc
 <h1>Hello, User!</h1>
 
 <div class="card">
@@ -48,9 +49,9 @@
             if (userMod.Password == userMod.RepPassword)
             {
                 DBConnection.AddToDataBase(userMod);
-                UsersComp.currentUser = userMod;
+                usc.currentUser = userMod;
                 Navigation.NavigateTo("/counter");
-                await storageService.SetAsync<User>("Autho", UsersComp.currentUser);
+                await storageService.SetAsync<User>("Autho", usc.currentUser);
             }
         }
         StateHasChanged();
